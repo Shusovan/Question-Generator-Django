@@ -3,6 +3,7 @@ from pyexpat import model
 import uuid
 from xml.dom.minidom import Document
 from django.db import models
+from sqlalchemy import true
 
 class Question(models.Model):
 
@@ -42,11 +43,11 @@ class Question(models.Model):
 '''
 class SubjectRegister(models.Model):
 
-    id = id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     subject = models.CharField(max_length = 100)
 
-    index_location = models.CharField(max_length=500)
+    index_location = models.CharField(max_length=500, default = None, null=True, blank = True)
 
     row_created = models.DateTimeField(auto_now_add = True)
 
@@ -96,7 +97,7 @@ class UploadString(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-    subjects = models.ForeignKey(SubjectRegister, on_delete = models.CASCADE, null = True, blank = True)
+    subjects = models.ForeignKey(SubjectRegister, on_delete = models.CASCADE, null=True, blank = True)
 
     string_prompt = models.CharField(max_length = 1000)
 

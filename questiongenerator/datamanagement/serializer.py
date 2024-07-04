@@ -27,4 +27,4 @@ class SubjectRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubjectRegister
         fields = "__all__"
-        read_only_fields = ("id", "row_created")
+        read_only_fields = ("id", "row_created", "index_location")
