@@ -70,6 +70,11 @@ TEMPLATES = [
     },
 ]
 
+
+# Add this setting to disable automatic appending of slashes to URLs
+APPEND_SLASH = False
+
+
 WSGI_APPLICATION = 'questiongenerator.wsgi.application'
 
 

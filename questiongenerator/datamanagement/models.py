@@ -34,12 +34,7 @@ class Question(models.Model):
 
 
 '''
-    Register subjects for generating questions
-    
-    get_delta_resources(): 
-        Description : Fetch the resource whose isIndex is false
-        @param : self, isIndex
-        Return : dict
+    description : Register subjects for generating questions
 '''
 class SubjectRegister(models.Model):
 
@@ -53,13 +48,20 @@ class SubjectRegister(models.Model):
 
     isDeleted = models.BooleanField(default = False)
 
-    
+
+    '''
+        description : Fetch the resource whose isIndex is false
+        @param      : self, isIndex
+        return      : dict (dictionary)
+    '''
     def get_delta_resources(self, isIndex : False) -> dict:
 
         # Filtering data with isIndex and subject
-        unindexed_string = UploadString.objects.filter(isIndexed = isIndex, subjects = self.subject)
+        unindexed_string = UploadString.objects.filter(isIndexed = isIndex, pk = self.pk)
 
-        # creating a dictionary
+        print(unindexed_string)
+
+        # creating a dictionary and storing unindexed strings with key : "string"
         resources = {"string" : unindexed_string}
 
         return resources
@@ -70,7 +72,7 @@ class SubjectRegister(models.Model):
 
 
 '''
-    Generates questions from documents
+    description : Generates questions from documents
 '''
 class UploadDocuments(models.Model):
 
@@ -91,13 +93,13 @@ class UploadDocuments(models.Model):
 
 
 '''
-    Generates questions from strings
+    description : Generates questions from strings
 '''
 class UploadString(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-    subjects = models.ForeignKey(SubjectRegister, on_delete = models.CASCADE, null=True, blank = True)
+    subjects = models.ForeignKey(SubjectRegister, on_delete = models.CASCADE, null = True, blank = True)
 
     string_prompt = models.CharField(max_length = 1000)
 
@@ -106,3 +108,17 @@ class UploadString(models.Model):
     row_created = models.DateTimeField(auto_now_add = True)
 
     isDeleted = models.BooleanField(default = False)
+
+
+'''
+    description : printing "Hello World"
+'''
+class HelloWorld(models.Model):
+
+    word = "Hello World"
+
+    '''
+        managed = False : It will not create column or save response in database
+    '''
+    class Meta:
+        managed = False

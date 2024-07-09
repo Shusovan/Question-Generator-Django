@@ -10,6 +10,12 @@ markdown = "*"
 djangorestframework = "*"
 drf-spectacular = "*"
 drf-yasg = "*"
+llama-index = "*"
+ollama = "*"
+llama-index-embeddings-huggingface = "*"
+torch = "*"
+transformers = "*"
+llama-index-embeddings-ollama = "*"
 
 [dev-packages]
 
