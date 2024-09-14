@@ -49,13 +49,19 @@ class StringIndexer():
         print(response)
 
     
-    def read_index():
+    def load_index():
 
         storage_context = StorageContext.from_defaults(persist_dir=settings.MEDIA_ROOT+"index")
 
         index_object = load_index_from_storage(storage_context, embed_model = Settings.embed_model)
 
         return index_object
+    
+
+    def process_query():
+
+        
+        ...
 
     
     def _get_documents(self,string) -> List[Document]:
