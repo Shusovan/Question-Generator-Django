@@ -57,7 +57,7 @@ class SubjectRegister(models.Model):
     def get_delta_resources(self, isIndex : False) -> dict:
 
         # Filtering data with isIndex and subject
-        unindexed_string = UploadString.objects.filter(isIndexed = isIndex, pk = self.pk)
+        unindexed_string = UploadString.objects.filter(isIndexed = isIndex, subjects = self.pk)
 
         print(unindexed_string)
 
